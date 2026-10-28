@@ -1,0 +1,389 @@
+@import "tailwindcss";
+
+:root {
+  /* =========================================================================
+     SMART MUNICIPAL DUSTBIN MONITORING PLATFORM — DESIGN SYSTEM TOKENS
+     Inspired by enterprise management dashboard design language
+     ========================================================================= */
+
+  /* Primary Blue Action & Highlight Hierarchy */
+  --color-primary: #1687D9;
+  --color-primary-hover: #0876C5;
+  --color-primary-soft: #E8F4FF;
+  --color-primary-dark: #065B96;
+
+  /* Deep Navy-Blue Navigation Sidebar Tokens */
+  --color-sidebar: #0C223A;
+  --color-sidebar-hover: #163754;
+  --color-sidebar-active: #173D60;
+  --color-sidebar-text: #E8F0F8;
+  --color-sidebar-muted: #92A8BE;
+  --color-sidebar-border: rgba(255, 255, 255, 0.08);
+
+  /* Page Background & Content Surfaces */
+  --color-page-background: #F0F5FB;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #F7FAFD;
+  --color-surface-hover: #F8FBFE;
+
+  /* Typography: High-contrast Dark Readable Ink */
+  --color-text-primary: #14283F;
+  --color-text-secondary: #526985;
+  --color-text-muted: #8192A8;
+  --color-text-light: #9FB1C7;
+
+  /* Subtle Blue-Gray Borders */
+  --color-border: #DCE6F0;
+  --color-border-strong: #C8D7E6;
+  --color-border-subtle: #EDF3F9;
+
+  /* Restrained Semantic Status Colors */
+  --color-success: #16A66A;
+  --color-success-soft: #E4F8EE;
+  --color-success-border: #A3E7C9;
+
+  --color-warning: #D99A12;
+  --color-warning-soft: #FFF5D9;
+  --color-warning-border: #FCE19B;
+
+  --color-orange: #EA580C;
+  --color-orange-soft: #FFF7ED;
+  --color-orange-border: #FED7AA;
+
+  --color-danger: #E54855;
+  --color-danger-soft: #FFE9EB;
+  --color-danger-border: #FCA5AC;
+
+  --color-info: #1687D9;
+  --color-info-soft: #E8F4FF;
+  --color-info-border: #BAE0FD;
+
+  --color-neutral: #64748B;
+  --color-neutral-soft: #F1F5F9;
+  --color-neutral-border: #CBD5E1;
+
+  /* Geometry & Elevation */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --shadow-card: 0 2px 8px rgba(24, 48, 78, 0.04);
+  --shadow-card-hover: 0 6px 18px rgba(24, 48, 78, 0.08);
+  --shadow-blue-ring: 0 0 0 3px rgba(22, 135, 217, 0.2);
+
+  /* Motion Easings */
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-drawer: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-card: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@theme {
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-primary-soft: var(--color-primary-soft);
+
+  --color-sidebar: var(--color-sidebar);
+  --color-sidebar-hover: var(--color-sidebar-hover);
+  --color-sidebar-active: var(--color-sidebar-active);
+  --color-sidebar-text: var(--color-sidebar-text);
+  --color-sidebar-muted: var(--color-sidebar-muted);
+
+  --color-page-bg: var(--color-page-background);
+  --color-surface: var(--color-surface);
+  --color-surface-muted: var(--color-surface-muted);
+
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+
+  --color-border: var(--color-border);
+  --color-border-strong: var(--color-border-strong);
+
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-danger: var(--color-danger);
+  --color-info: var(--color-info);
+
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", Menlo, Consolas, monospace;
+}
+
+html, body {
+  background-color: var(--color-page-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================================================================
+   KEYFRAME ANIMATIONS
+   ========================================================================= */
+
+@keyframes status-live-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.95);
+  }
+}
+
+.live-status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #16A66A;
+  animation: status-live-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* =========================================================================
+   ENTERPRISE UTILITY CLASSES
+   ========================================================================= */
+
+/* Hero Command Mesh */
+.command-hero-bg {
+  background: radial-gradient(at 10% 10%, rgba(22, 135, 217, 0.06) 0px, transparent 50%),
+              radial-gradient(at 90% 20%, rgba(22, 166, 106, 0.04) 0px, transparent 50%),
+              radial-gradient(at 50% 90%, rgba(232, 244, 255, 0.5) 0px, transparent 50%);
+}
+
+/* Content Card with Restrained Shadow */
+.card-hover {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.18s var(--ease-card), box-shadow 0.18s var(--ease-card), border-color 0.18s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Primary Municipal Action Button */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 2px rgba(22, 135, 217, 0.2);
+  transition: transform 0.12s var(--ease-smooth), background-color 0.12s ease, box-shadow 0.12s ease;
+  user-select: none;
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(22, 135, 217, 0.25);
+}
+.btn-primary:active {
+  background-color: var(--color-primary-dark);
+  transform: scale(0.98);
+}
+
+/* Secondary Neutral Button */
+.btn-secondary {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  border-radius: 10px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 2px rgba(24, 48, 78, 0.03);
+  transition: transform 0.12s var(--ease-smooth), border-color 0.12s ease, background-color 0.12s ease, box-shadow 0.12s ease;
+}
+.btn-secondary:hover {
+  background-color: var(--color-surface-muted);
+  border-color: var(--color-border-strong);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(24, 48, 78, 0.05);
+}
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* Form Input Fields */
+.input-field {
+  height: 44px;
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 0 14px;
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+  box-shadow: 0 1px 2px rgba(24, 48, 78, 0.02);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.input-field:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-blue-ring);
+}
+.input-field::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* Leaflet GIS Map Container */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  background-color: #EDF3F9;
+  font-family: inherit;
+  z-index: 10;
+}
+
+/* Map Markers */
+.custom-bin-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 2px 6px rgba(12, 34, 58, 0.22);
+  transition: transform 0.18s var(--ease-drawer);
+  cursor: pointer;
+}
+.custom-bin-marker:hover {
+  transform: scale(1.18);
+  z-index: 1000 !important;
+}
+
+.custom-bin-marker.marker-selected {
+  outline: 3px solid #1687D9;
+  outline-offset: 2px;
+  box-shadow: 0 0 14px rgba(22, 135, 217, 0.6);
+  z-index: 1001 !important;
+}
+
+/* High-Contrast Charcoal Dark Basemap Filter (Zero Watermarks, 100% Permitted Free OSM) */
+.dark-charcoal-tiles .leaflet-tile {
+  filter: brightness(0.62) invert(1) contrast(2.8) hue-rotate(200deg) saturate(0.22) brightness(0.72);
+}
+
+/* Barshi Dark Heat Map Pulsing Bin Markers (Black -> Yellow -> Orange Theme) */
+.barshi-bin-dot-wrapper {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.barshi-bin-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
+  position: relative;
+  z-index: 2;
+  transition: transform 0.18s ease;
+  cursor: pointer;
+}
+
+.barshi-bin-dot-wrapper:hover .barshi-bin-dot {
+  transform: scale(1.3);
+}
+
+.barshi-bin-dot.is-selected {
+  outline: 2px solid #FF6B00;
+  outline-offset: 2px;
+  box-shadow: 0 0 10px rgba(255, 107, 0, 0.9);
+}
+
+/* Slow, subtle glowing halo animation (restrained 1.7x pulse, never obscuring neighbors) */
+.barshi-bin-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin-top: -5px;
+  margin-left: -5px;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: barshi-dark-halo-pulse 2.6s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes barshi-dark-halo-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .barshi-bin-halo {
+    animation: none;
+    opacity: 0.25;
+    transform: scale(1.2);
+  }
+}
+
+/* Custom Dark Leaflet popup styling for Barshi Dashboard */
+.barshi-leaflet-popup .leaflet-popup-content-wrapper {
+  background: #0B131F;
+  color: #F8FAFC;
+  border-radius: 14px;
+  border: 1px solid #1E293B;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  padding: 0;
+  overflow: hidden;
+}
+.barshi-leaflet-popup .leaflet-popup-content {
+  margin: 0;
+  line-height: 1.4;
+}
+.barshi-leaflet-popup .leaflet-popup-tip {
+  background: #0B131F;
+  border: 1px solid #1E293B;
+}
+
+/* Enterprise Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-page-background);
+}
+::-webkit-scrollbar-thumb {
+  background: #C8D7E6;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A3B8CD;
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
